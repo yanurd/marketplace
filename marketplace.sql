@@ -58,7 +58,7 @@ CREATE TABLE `users` (
   `name` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(64) NOT NULL, -- 64 es un número redondo para guardar hashes
   `isDeleted` varchar(45) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT 'false'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -56,19 +56,19 @@ app.post("/login", function (req,res){
       const isValid = bcrypt.compareSync(req.body.password, data[0].password)
       console.log(isValid)
       if (isValid){
-        return db.select("*")
+        db.select("*") // quité el return y lo puse más abajo, porque estarías retornando una promesa
           .from("users")
-          .where("email","=",email)
+          .where("email","=", req.body.email) // tenías "email" solamente, esa variable no existe, había que reemplazarla por "req.body.email"
           .then(user => {
-            console.log(user)
-            res.json(user[0])
+            console.log(user);
+            return res.status(200).json(user[0]) // el return lo moví hacia acá, así retornas la respuesta completa
           })
           .catch(err => res.status(400).json("Unable to get user"))
       }else{
-        res.status(400).json("Wrong credentials")
+        return res.status(400).json("Wrong credentials") // puse también return a cada uno de los "res", de esta manera nos aseguramos que la ejecución termine y no retorne otras cosas más abajo
       }
     })
-    .catch(err => res.status(400).json("Wrong Credentials"))
+    .catch(err => res.status(400).json("Wrong credentials"));
 })
 // db.select("*")
 //   .from("users")
