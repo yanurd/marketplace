@@ -5,7 +5,7 @@
     <meta name="description" content="This is the description" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/styles/styles.css" />
-    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body onload="ready()">
     <header class="main-header">
@@ -14,6 +14,7 @@
           <li><a href="index.html">HOME</a></li>
           <li><a href="store.html">STORE</a></li>
           <li><a href="login.html">LOG IN</a></li>
+          <li><a href="register.html">REGISTER</a></li>
         </ul>
       </nav>
       <h1 class="band-name band-name-large">The Generics</h1>
@@ -126,12 +127,12 @@
         </ul>
       </div>
     </footer>
-    <script src="./scripts/updateCartTotal.js"></script>
-    <script src="./scripts/purchaseClicked.js"></script>
-    <script src="./scripts/addItemToCart.js"></script>
-    <script src="./scripts/addToCartClicked.js"></script>
-    <script src="./scripts/quantityChanged.js"></script>
-    <script src="./scripts/removeCartItem.js"></script>
+    <script src="./scripts/cart/updateCartTotal.js"></script>
+    <script src="./scripts/cart/purchaseClicked.js"></script>
+    <script src="./scripts/cart/addItemToCart.js"></script>
+    <script src="./scripts/cart/addToCartClicked.js"></script>
+    <script src="./scripts/cart/quantityChanged.js"></script>
+    <script src="./scripts/cart/removeCartItem.js"></script>
     <script src="./scripts/ready.js"></script>
   </body>
 </html>

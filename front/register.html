@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Generics</title>
+    <meta name="description" content="This is the description" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles/register.css">
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="nav main-nav">
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="store.html">STORE</a></li>
+          <li><a href="login.html">LOG IN</a></li>
+          <li><a href="register.html">REGISTER</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="login-box">
+      <img src="./assets/static/face.png" class="avatar" alt="Avatar Image">
+      <h1>Register</h1>
+      <form>
+        <!-- USERNAME INPUT -->
+        <label for="name">Name</label>
+        <input required id="name" type="text" placeholder="Enter Name">
+        <label for="lastName">Last Name</label>
+        <input required id="lastName" type="text" placeholder="Enter Last Name">
+        <label for="email">Email</label>
+        <input required id="email" type="text" placeholder="Enter Email">
+        <!-- PASSWORD INPUT -->
+        <label for="password">Password</label>
+        <input required id="password" type="password" placeholder="Enter Password">
+        <input id="registerUser" type="submit" value="Register">
+      </form>
+    </div>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./scripts/user/register.js"></script>
+  </body>
+</html>
