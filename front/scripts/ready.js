@@ -4,8 +4,10 @@ if (document.readyState == 'loading') {
 } else {
   ready()
 }
-
 function ready() {
+  if (localStorage.isLogged){
+    loggedIn()
+  }
   var removeCartItemButtons = document.getElementsByClassName('btn-danger')
   for (var i = 0; i < removeCartItemButtons.length; i++) {
       var button = removeCartItemButtons[i]
@@ -23,6 +25,8 @@ function ready() {
       var button = addToCartButtons[i]
       button.addEventListener('click', addToCartClicked)
   }
-
+  if (localStorage.isLogged == true){
+    loggedIn()
+  }
   document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 }

@@ -6,10 +6,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/styles/styles.css" />
   </head>
-  <body>
+  <body onload="loggedIn()">
     <header class="main-header">
       <nav class="nav main-nav">
-        <ul>
+        <ul id="myList">
           <li><a href="index.html">HOME</a></li>
           <li><a href="store.html">STORE</a></li>
           <li><a href="login.html">LOG IN</a></li>
@@ -81,5 +81,7 @@
         </ul>
       </div>
     </footer>
+    <script src="./scripts/user/loggedIn.js"></script>
+    <script src="./scripts/user/logOut.js"></script>
   </body>
 </html>

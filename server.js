@@ -1,84 +1,29 @@
 const bodyParser = require("body-parser");
 const express = require("express");
-const knex = require("knex");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const db = require("./src/config/conection");
 const salt = bcrypt.genSaltSync(saltRounds);
 const app = express();
 app.use(cors());
-const db = knex({
-  client: "mysql",
-  connection: {
-    host: "127.0.0.1",
-    user: "root",
-    password: "",
-    database: "marketplace",
-  },
-});
+
 require("dotenv").config();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: "1mb" }));
 app.disable("x-powered-by");
 
-app.post("/register", function (req, res) {
-  const { name, lastname, email, password } = req.body;
-  const hash = bcrypt.hashSync(password, salt);
-  db("users")
-    .insert({
-      name: name,
-      lastname: lastname,
-      email: email,
-      password: hash,
-    })
-    .then((response) => {
-      res.json(response);
-      console.log(response);
-    })
-    .catch((error) =>
-      res.status(400).json("Hubo un error al realizar el registro")
-    );
-});
-
-app.post("/login", function (req, res) {
-  db.select("email", "password")
-    .from("users")
-    .where("email", "=", req.body.email)
-    .then((data) => {
-      const isValid = bcrypt.compareSync(req.body.password, data[0].password);
-      if (isValid) {
-        db.select("*")
-          .from("users")
-          .where("email", "=", req.body.email)
-          .then((user) => {
-            console.log(user);
-            return res.status(200).json(user[0]);
-          })
-          .catch((err) => res.status(400).json("Unable to get user"));
-      } else {
-        return res.status(400).json("Wrong credentials");
-      }
-    })
-    .catch((err) => res.status(400).json("Wrong credentials"));
-});
-
-app.post("/cart", function(req, res){
-  const { item, precio, cantidad } = req.body;
-  db.insert({
-    idUser: req.body.idUser,
-    item: item,
-    precio: precio,
-    cantidad: cantidad
-    })
-    .into("cart")
-    .then(data => res.send("Your items have been purchased!"))
-    .catch(err => res.status(400).json("Unable to purchase items"))
-  }
-)
-// db.select("*")
-//   .from("users")
-//   .then((data) => console.log(data));
+const register = require("./src/routes/registeruser")
+const login = require("./src/routes/login")
+const cart = require("./src/routes/cart")
+const emailUpdate = require("./src/routes/emailUpdate")
+const passwordUpdate = require("./src/routes/passwordUpdate")
+app.post("/register", register.register);
+app.post("/login", login.login);
+app.post("/cart", cart.cart);
+app.post("/emailUpdate", emailUpdate.emailUpdate);
+app.post("/passwordUpdate", passwordUpdate.passwordUpdate);
 
 app.listen(5000, () => {
   console.log("http://localhost:5000");
