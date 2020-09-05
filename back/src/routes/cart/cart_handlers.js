@@ -1,3 +1,4 @@
+const db = require("../../config/conection")
 module.exports.cart = function(req, res){
   const { item, precio, cantidad } = req.body;
   db.insert({

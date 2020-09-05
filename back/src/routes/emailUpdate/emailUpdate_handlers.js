@@ -1,3 +1,4 @@
+const db = require("../../config/conection");
 module.exports.emailUpdate = function (req,res){
   const { id, email }= req.body
   db("users")
